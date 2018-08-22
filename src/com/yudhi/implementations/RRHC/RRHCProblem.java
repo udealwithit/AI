@@ -7,7 +7,7 @@ public interface RRHCProblem extends Problem{
 	
 	public RRHCState[] getNeighbours();
 
-	public RRHCState getMax(RRHCState[] states);
+	public RRHCState getBest(RRHCState[] states);
 	
 	public RRHCState getInitialState();
 	

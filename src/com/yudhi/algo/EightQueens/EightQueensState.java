@@ -7,6 +7,14 @@ public class EightQueensState implements RRHCState {
 
 	int[] arr;
 	
+	public int[] getArr() {
+		return arr;
+	}
+
+	public void setArr(int[] arr) {
+		this.arr = arr;
+	}
+
 	public EightQueensState() {
 		this.arr = new int[8];
 		for(int i=0;i<8;i++) {
@@ -21,7 +29,7 @@ public class EightQueensState implements RRHCState {
 		for(int c=0;c<8;c++) {
 			int r = arr[c];
 			
-			//search for queens in same row
+			//search for queens in the same row
 			for(int i=c+1;i<8;i++) {
 				if(arr[i]==r){
 					count++;
