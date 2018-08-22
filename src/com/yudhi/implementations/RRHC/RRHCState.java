@@ -1,5 +1,8 @@
 package com.yudhi.implementations.RRHC;
 
-public interface RRHCState {
+import com.yudhi.elements.State;
 
+public interface RRHCState extends State{
+
+	public RRHCState[] getNeighbours();
 }
