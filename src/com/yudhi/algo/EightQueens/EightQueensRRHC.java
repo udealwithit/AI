@@ -2,6 +2,7 @@ package com.yudhi.algo.EightQueens;
 
 import java.util.ArrayList;
 
+import com.yudhi.implementations.RRHC.RRHCHeuristic;
 import com.yudhi.implementations.RRHC.RRHCProblem;
 import com.yudhi.implementations.RRHC.RRHCState;
 
@@ -16,6 +17,7 @@ public class EightQueensRRHC implements RRHCProblem {
 		int[] arr1 = s.getArr();
 		int location = 0;
 		
+		//for queen in each column find all places the queen can be placed
 		for(int i=0;i<8;i++) {
 			for(int j=0;j<8;j++) {
 				int arr[] = new int[8];
@@ -36,9 +38,23 @@ public class EightQueensRRHC implements RRHCProblem {
 	}
 
 	@Override
-	public RRHCState getBest(RRHCState[] states) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<RRHCState> getBest(RRHCState[] states,RRHCHeuristic currentHeuristic) {
+		ArrayList<RRHCState> bestStates = new ArrayList<>();
+		EightQueensHeuristic heuristic = (EightQueensHeuristic)currentHeuristic;
+		int min = heuristic.getValue();
+		for(int i=0;i<states.length;i++) {
+			EightQueensHeuristic h = (EightQueensHeuristic)states[i].getHeuristic();
+			if(h.getValue()<min) {
+				min = h.getValue();
+			}
+		}
+		for(int i=0;i<states.length;i++) {
+			EightQueensHeuristic h = (EightQueensHeuristic)states[i].getHeuristic();
+			if(h.getValue()==min) {
+				bestStates.add(states[i]);
+			}
+		}
+		return bestStates;
 	}
 
 	@Override
@@ -46,7 +62,7 @@ public class EightQueensRRHC implements RRHCProblem {
 		int[] arr = new int[8];
 		
 		for(int i=0;i<8;i++) {
-			arr[i] = (int)Math.random()*8;
+			arr[i] = (int)(Math.random()*8);
 		}
 		EightQueensState s = new  EightQueensState();
 		s.setArr(arr);

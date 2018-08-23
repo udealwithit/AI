@@ -54,4 +54,14 @@ public class EightQueensState implements RRHCState {
 		return new EightQueensHeuristic(count);
 	}
 
+	public void display() {
+		EightQueensHeuristic h = (EightQueensHeuristic)getHeuristic();
+		int val = h.getValue();
+		System.out.print("[");
+		for(int i=0;i<8;i++) {
+			System.out.print(arr[i]+", ");
+		}
+		System.out.print("]---------"+val+"\n");
+	}
+
 }

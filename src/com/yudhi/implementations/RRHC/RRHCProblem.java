@@ -1,5 +1,7 @@
 package com.yudhi.implementations.RRHC;
 
+import java.util.ArrayList;
+
 import com.yudhi.elements.Problem;
 import com.yudhi.implementations.RRHC.RRHCState;
 
@@ -7,7 +9,7 @@ public interface RRHCProblem extends Problem{
 	
 	public RRHCState[] getNeighbours(RRHCState state);
 
-	public RRHCState getBest(RRHCState[] states);
+	public ArrayList<RRHCState> getBest(RRHCState[] states, RRHCHeuristic currentHeuristic);
 	
 	public RRHCState getInitialState();
 	

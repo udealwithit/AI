@@ -1,5 +1,7 @@
 package com.yudhi.main;
 
+import java.util.ArrayList;
+
 import com.yudhi.algo.EightQueens.EightQueensHeuristic;
 import com.yudhi.algo.EightQueens.EightQueensRRHC;
 import com.yudhi.algo.EightQueens.EightQueensState;
@@ -8,24 +10,29 @@ import com.yudhi.implementations.RRHC.RRHCState;
 public class Main {
 
 	public static void main(String[] args) {
-		int[] arr = {0,2,4,6,1,3,5,7};
-		
-		EightQueensState s = new EightQueensState();
-		s.setArr(arr);
-		EightQueensHeuristic h = (EightQueensHeuristic) s.getHeuristic();
-		System.out.println(h.getValue());
-		
 		EightQueensRRHC rrhc = new EightQueensRRHC();
-		RRHCState[] neighbours = rrhc.getNeighbours(s);
-		
-		for(RRHCState r : neighbours) {
-			EightQueensState state = (EightQueensState)r;
-			int[] arrays = state.getArr();
-			System.out.print("[");
-			for(int j=0;j<8;j++) {
-				System.out.print(arrays[j]+", ");
+		for(int i=0; i<4; i++) {
+			System.out.println("Restart No:"+i);
+			EightQueensState state = (EightQueensState)rrhc.restart();
+			System.out.println("---Starting state---");
+			state.display();
+			EightQueensState nextState = state;
+			while(true) {
+				ArrayList<RRHCState> bestStates = rrhc.getBest(rrhc.getNeighbours(nextState), nextState.getHeuristic());
+				if(bestStates.size()==0) {
+					break;
+				}
+				if(bestStates.size()>1) {
+					int random = (int)((Math.random())*bestStates.size());
+					nextState = (EightQueensState)bestStates.get(random);
+				}
+				else {
+					nextState = (EightQueensState)bestStates.get(0);
+				}
 			}
-			System.out.print("]\n");
+			System.out.println("---Final state---");
+			nextState.display();
+			System.out.println("\n\n");
 		}
 	}
 }
