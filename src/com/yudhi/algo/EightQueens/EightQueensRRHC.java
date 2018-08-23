@@ -10,9 +10,29 @@ public class EightQueensRRHC implements RRHCProblem {
 	ArrayList<EightQueensState> exploredInitialStates = new ArrayList<>();
 	
 	@Override
-	public RRHCState[] getNeighbours() {
-		// TODO Auto-generated method stub
-		return null;
+	public RRHCState[] getNeighbours(RRHCState state) {
+		EightQueensState s = (EightQueensState) state;
+		EightQueensState[] neighbours = new EightQueensState[56];
+		int[] arr1 = s.getArr();
+		int location = 0;
+		
+		for(int i=0;i<8;i++) {
+			for(int j=0;j<8;j++) {
+				int arr[] = new int[8];
+				arr = arr1.clone();
+				
+				if(j==arr1[i]) {
+					continue;
+				}
+				
+				arr[i] = j;
+				EightQueensState ns = new EightQueensState();
+				ns.setArr(arr);
+				neighbours[location] = ns;
+				location++;
+			}
+		}
+		return neighbours;
 	}
 
 	@Override
