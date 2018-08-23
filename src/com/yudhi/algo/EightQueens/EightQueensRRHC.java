@@ -35,15 +35,39 @@ public class EightQueensRRHC implements RRHCProblem {
 
 	@Override
 	public RRHCState restart() {
-		EightQueensState s = exploredInitialStates.get(0);
+		EightQueensState state = new EightQueensState();
 		
-		//check if s has already been explored
-		while(exploredInitialStates.contains(s)) {
-			s = (EightQueensState) getInitialState();
+		//check if state has already been explored 
+		while(true) {
+			state = (EightQueensState) getInitialState();
+			if(!contains(state)){
+				break;
+			}
 		}
-		exploredInitialStates.add(s);
 		
-		return s;
+		exploredInitialStates.add(state);
+		
+		return state;
+	}
+	
+	public boolean contains(EightQueensState state) {
+		int[] arr1 = state.getArr();
+		boolean explored = false; 
+		for(EightQueensState s : exploredInitialStates) {
+			explored = true;
+			int[] arr = s.getArr();
+			for(int i=0;i<8;i++) {
+				if(arr[i]!=arr1[i]) {
+					explored = false;
+					break;
+				}
+			}
+			
+			if(explored) {
+				return explored;
+			}
+		}
+		return explored;
 	}
 
 }
