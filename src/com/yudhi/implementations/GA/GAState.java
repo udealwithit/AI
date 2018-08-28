@@ -1,5 +1,7 @@
 package com.yudhi.implementations.GA;
 
-public interface GAState {
+import com.yudhi.elements.State;
+
+public interface GAState extends State{
 
 }
