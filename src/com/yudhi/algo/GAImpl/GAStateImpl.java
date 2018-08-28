@@ -15,10 +15,16 @@ public class GAStateImpl implements GAState {
 		this.gene = gene;
 	}
 
+	//write your fitness function which assigns a value to the state
 	@Override
 	public Heuristic getHeuristic() {
-		// TODO Auto-generated method stub
-		return null;
+		int count = 0;
+		for (int i = 0; i < gene.length(); i++) {
+			if(gene.charAt(i)=='1')
+				count++;
+		}
+		int value = (count/gene.length())*100;
+		return new GAHeuristicImpl(value);
 	}
 
 }
