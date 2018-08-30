@@ -4,7 +4,7 @@ import com.yudhi.elements.Problem;
 
 public interface GeneticAlgoProb extends Problem {
 
-	public void selection(Population pop);
+	public Population selection(GAHeuristic threshold, Population pop);
 	
 	public void crossover();
 	
