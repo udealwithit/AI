@@ -6,7 +6,7 @@ public interface GeneticAlgoProb extends Problem {
 
 	public Population selection(GAHeuristic threshold, Population pop);
 	
-	public void crossover();
+	public GAState crossover(GAState s1, GAState s2);
 	
 	public void mutation();
 		

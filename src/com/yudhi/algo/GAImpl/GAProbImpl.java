@@ -34,9 +34,29 @@ public class GAProbImpl implements GeneticAlgoProb {
 	}
 
 	@Override
-	public void crossover() {
-		// TODO Auto-generated method stub
-
+	public GAState crossover(GAState s1, GAState s2) {
+		GAStateImpl state1 = (GAStateImpl)s1;
+		GAStateImpl state2 = (GAStateImpl)s2;
+		GAStateImpl child1 = new GAStateImpl();
+		GAStateImpl child2 = new GAStateImpl();
+		
+		String gene1 = state1.getGene();
+		String gene2 = state2.getGene();
+		
+		int random = (int)(Math.random()*gene1.length());
+		String childGene1 = gene1.substring(0, random) + gene2.substring(random, gene2.length());
+		String childGene2 = gene2.substring(0, random) + gene1.substring(random, gene2.length());
+		
+		child1.setGene(childGene1);
+		child2.setGene(childGene2);
+		
+		GAHeuristicImpl h1 = (GAHeuristicImpl)child1.getHeuristic();
+		GAHeuristicImpl h2 = (GAHeuristicImpl)child2.getHeuristic();
+		
+		if(h1.getValue()>h2.getValue()) {
+			return child1;
+		}
+		return child2;
 	}
 
 	@Override
