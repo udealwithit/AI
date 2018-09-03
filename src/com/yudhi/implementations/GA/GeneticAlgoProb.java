@@ -8,6 +8,6 @@ public interface GeneticAlgoProb extends Problem {
 	
 	public GAState crossover(GAState s1, GAState s2);
 	
-	public void mutation();
+	public void mutation(double probability, GAState s);
 		
 }
