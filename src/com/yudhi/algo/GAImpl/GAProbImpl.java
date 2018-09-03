@@ -61,11 +61,14 @@ public class GAProbImpl implements GeneticAlgoProb {
 	@Override
 	public void mutation(double probability, GAState s) {
 		double val = Math.random()*100;
+		
 		if(val<probability) {
 			GAStateImpl s1 = (GAStateImpl)s;
 			String gene = s1.getGene();
+			
 			int pos = (int)(Math.random()*gene.length());
 			String newGene = "";
+			
 			for(int i=0;i<gene.length();i++) {
 				if(i==pos) {
 					if(gene.charAt(i)=='0') {
