@@ -18,4 +18,11 @@ public class PopulationImpl implements Population{
 	public void setPopulation(ArrayList<GAState> population) {
 		this.population = population;
 	}
+	
+	public void display() {
+		for(GAState g : population) {
+			GAStateImpl gI = (GAStateImpl)g;
+			System.out.println(gI.gene);
+		}
+	}
 }

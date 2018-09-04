@@ -17,7 +17,7 @@ public class GAProbImpl implements GeneticAlgoProb {
 		
 		GAHeuristicImpl thresholdImpl = (GAHeuristicImpl) threshold;
 		int thresholdValue = thresholdImpl.getValue();
-		
+
 		//loop to find all states greater than threshold
 		for(GAState g : total_pop) {
 			GAStateImpl gImpl = (GAStateImpl) g;

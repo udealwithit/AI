@@ -23,7 +23,7 @@ public class GAStateImpl implements GAState {
 			if(gene.charAt(i)=='1')
 				count++;
 		}
-		int value = (count/gene.length())*100;
+		int value = (count*100)/(gene.length());
 		return new GAHeuristicImpl(value);
 	}
 
